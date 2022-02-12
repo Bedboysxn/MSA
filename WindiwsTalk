@@ -1,0 +1,26 @@
+#include <windows.h>
+#include<stdio.h>
+int main()
+{
+    int n=0;
+    printf("Please enter your copy: \n");
+
+    for(n=0;n<=10000;n++)
+    {
+
+        Sleep(500);//调用一个时间作为参数，意思为500ms,运行一遍程序的间隔，类似于数字电路中学习到的计数器，让其进入休眠中
+        //模拟从击打键盘到松开键盘的过程    单位毫秒
+
+        keybd_event(17,0,0,0);//17是control的阿斯玛，合成一个敲击此键的功能
+        keybd_event(86,0,0,0);//86是V的阿斯玛，按下这个键意为按下一个v
+        keybd_event(17,0,KEYEVENTF_KEYUP,0);//函数第三个参数的值为KEYEVENTF_KEYUP时，意味着提前松开control
+        keybd_event(86,0,KEYEVENTF_KEYUP,0);//此时意味着松开V
+
+
+        keybd_event(13,0,0,0);//意味着击打下了enter键
+        keybd_event(13,0,KEYEVENTF_KEYUP,0);//意味着松开enter键
+        //getchar();
+    }
+    return 0 ;
+
+}
